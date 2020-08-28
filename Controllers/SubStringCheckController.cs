@@ -15,8 +15,6 @@ namespace SubStringSearch.Controllers
         {
             yield return new SubStringCheck
             {
-                MainString = "",
-                SubString = "",
                 Results = ""
             };
         }
