@@ -9,13 +9,14 @@ export class HomeComponent {
   maintext: string;
   subtext: string;
   params = new HttpParams();
+  result: string;
 
   private subStringCheck(text1, text2) {
     this.maintext = text1;
     this.subtext = text2;
     this.params.append('maintext', this.maintext);
     this.params.append('subtext', this.subtext);
-    
+    this.result = this.maintext + this.subtext;
   }
 
   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {

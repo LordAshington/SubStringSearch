@@ -5,5 +5,7 @@
 <input type="text" id="maintext" name="maintextinput" #text1><br><br>
 <label for="subtext">Subtext: </label>
 <input type="text" id="subtext" name="subtextinput" #text2><br><br>
-<button class="btn-primary" (click)="subStringCheck(text1, text2)">Submit</button>
+<button class="btn-primary" (click)="subStringCheck(text1.value, text2.value)">Submit</button>
+
+<p>{{result}}</p>
 

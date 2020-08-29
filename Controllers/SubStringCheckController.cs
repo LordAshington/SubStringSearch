@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace SubStringSearch.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("[controller]/{text}/{subtext}")]
     public class SubStringCheckController : ControllerBase
     {
         private string SubStringCheck(string text, string subtext)
