@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace SubStringSearch.Controllers
 {
     [ApiController]
-    [Route("[controller]/{text}/{subtext}")]
+    [Route("substringchecker/{text}/{subtext}")]
     public class SubStringCheckController : ControllerBase
     {
         private string SubStringCheck(string text, string subtext)
@@ -67,13 +67,14 @@ namespace SubStringSearch.Controllers
         }
 
         [HttpGet]
-        public string Get(string text, string subtext)
+        public string substringchecker(string text, string subtext)
         {
             //ensure the strings are both acceptable
             text = text.Trim().ToLower();
             subtext = subtext.Trim().ToLower();
             if(!CheckStrings(text, subtext))
             {
+
                 return "Error with one of the text strings, please try again";
             }
             //no problem with the strings so lets check for a substring

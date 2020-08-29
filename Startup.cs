@@ -54,6 +54,10 @@ namespace SubStringSearch
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
+                    name: "substringchecker",
+                    pattern: "{controller=substringchecker}/{action=substringchecker}/{text}/{subtext}");
+
+                endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller}/{action=Index}/{id?}");
             });
