@@ -2,9 +2,9 @@
 <p>Please enter a string of text and a substring to search for</p>
 
 <label for="maintext">Text: </label>
-<input type="text" id="maintext" name="maintextinput" #text1><br><br>
+<input type="text" id="maintext" name="maintextinput" #text1 onkeydown="return (event.keyCode!=190 || event.keyCode!=110);"><br><br>
 <label for="subtext">Subtext: </label>
-<input type="text" id="subtext" name="subtextinput" #text2><br><br>
+<input type="text" id="subtext" name="subtextinput" #text2 onkeydown="return (event.keyCode!=190 || event.keyCode!=110);"><br><br>
 <button class="btn-primary" (click)="subStringCheck(text1.value, text2.value)">Submit</button>
 
 <p>{{result}}</p>

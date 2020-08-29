@@ -1,6 +1,5 @@
-import { Component, Inject } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { getBaseUrl } from '../../main';
 
 @Component({
@@ -10,28 +9,24 @@ import { getBaseUrl } from '../../main';
 export class HomeComponent {
   maintext: string;
   subtext: string;
-  params = new HttpParams();
   result: string;
   errorMessage: string;
   baseUrl: string;
 
   constructor(private http: HttpClient) {
-    /*http.get<string>(baseUrl + 'substringchecker', { params: this.params }).subscribe(result => {
-      var compareResult = result;
-    }, error => console.error(error));*/
   }
 
+  //Here we will check the string, format it and send it to the backend for checking
   public subStringCheck(text1, text2) {
     //check the strings aren't empty
-    console.log("clicked submit with text1="+text1+"text2="+text2);
     if (this.stringValid(text1, text2)) {
+      //clean up the strings
       this.maintext = text1.trim();
       this.subtext = text2.trim();
-      this.params.append('maintext', this.maintext);
-      this.params.append('subtext', this.subtext);
-      //this.result = this.maintext + this.subtext;
+      //get the base url config
       this.baseUrl = getBaseUrl();
-      this.http.get<string>(this.baseUrl + 'substringchecker' + "/" + this.maintext + "/" + this.subtext).subscribe(compResult => {
+      //send the get request in uri encoded strings
+      this.http.get<string>(this.baseUrl + 'substringchecker' + "/" + encodeURIComponent(this.maintext) + "/" +  encodeURIComponent(this.subtext)).subscribe(compResult => {
          this.result = compResult;
       }, error => console.error(error));
     } else {

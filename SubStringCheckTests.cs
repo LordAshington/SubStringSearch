@@ -47,5 +47,11 @@ namespace SubStringSearch
         {
             Assert.Equal("\"Substing starts at text index:0\"", _sut.substringchecker("   the   ", "the"));
         }
+
+        [Fact]
+        public void FullStopsShouldWork()
+        {
+            Assert.Equal("\"Substing starts at text index:0\"", _sut.substringchecker(".", "."));
+        }
     }
 }
