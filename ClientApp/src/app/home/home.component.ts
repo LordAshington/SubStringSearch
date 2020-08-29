@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { getBaseUrl } from '../../main';
-import { empty } from 'rxjs';
 
 @Component({
   selector: 'app-home',
