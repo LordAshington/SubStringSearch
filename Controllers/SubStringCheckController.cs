@@ -54,11 +54,11 @@ namespace SubStringSearch.Controllers
                     
                     subtextStartstr = subtextStartstr + subtextMatches[indexes].ToString();
                 }
-                return subtextStartstr;
+                return "\"" + subtextStartstr + "\"";
             }
             else
             {
-                return "Subtext does not appear in Text";
+                return "\"Subtext does not appear in Text\"";
             }
         }
 
@@ -84,7 +84,7 @@ namespace SubStringSearch.Controllers
             if(!CheckStrings(text, subtext))
             {
 
-                return "Error with one of the text strings, please try again";
+                return "\"Error with one of the text strings, please try again\"";
             }
             //no problem with the strings so lets check for a substring
             return SubStringCheck(text, subtext);
