@@ -25,7 +25,7 @@ namespace SubStringSearch.Controllers
                         //chek the whole substring is present
                         for(int subtextIndex = 0; subtextIndex < subtext.Length; subtextIndex++)
                         {
-                            if(text[i+subtextIndex] == subtext[subtextIndex])
+                            if(i != text.Length - 1 && text[i+subtextIndex] == subtext[subtextIndex])
                             {
                                 //check if its the last character in subtext
                                 if(subtextIndex == subtext.Length - 1)
@@ -79,15 +79,16 @@ namespace SubStringSearch.Controllers
         public string substringchecker(string text, string subtext)
         {
             //ensure the strings are both acceptable
-            text = text.Trim().ToLower();
-            subtext = subtext.Trim().ToLower();
-            if(!CheckStrings(text, subtext))
+            string testText = text.Trim().ToLower();
+            string testSubText = subtext.Trim().ToLower();
+            Console.WriteLine(testText+" "+testSubText);
+            if(!CheckStrings(testText, testSubText))
             {
 
                 return "\"Error with one of the text strings, please try again\"";
             }
             //no problem with the strings so lets check for a substring
-            return SubStringCheck(text, subtext);
+            return SubStringCheck(testText, testSubText);
         }
     }
 }
