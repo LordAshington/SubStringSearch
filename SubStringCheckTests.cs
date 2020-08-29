@@ -33,25 +33,25 @@ namespace SubStringSearch
         [Fact]
         public void MatchIsCaseInsensitive()
         {
-            Assert.Equal("\"Substing starts at text index:0\"", _sut.substringchecker("text", "TEXT"));
+            Assert.Equal("\"Subtext starts at text index:0\"", _sut.substringchecker("text", "TEXT"));
         }
 
         [Fact]
         public void CanMatchMultipleTimes()
         {
-            Assert.Equal("\"Substing starts at text index:0, 4, 8\"", _sut.substringchecker("the the the", "the"));
+            Assert.Equal("\"Subtext starts at text index:0, 4, 8\"", _sut.substringchecker("the the the", "the"));
         }
 
         [Fact]
         public void WhiteSpaceIsTrimmed()
         {
-            Assert.Equal("\"Substing starts at text index:0\"", _sut.substringchecker("   the   ", "the"));
+            Assert.Equal("\"Subtext starts at text index:0\"", _sut.substringchecker("   the   ", "the"));
         }
 
         [Fact]
         public void FullStopsShouldWork()
         {
-            Assert.Equal("\"Substing starts at text index:0\"", _sut.substringchecker(".", "."));
+            Assert.Equal("\"Subtext starts at text index:0\"", _sut.substringchecker(".", "."));
         }
     }
 }

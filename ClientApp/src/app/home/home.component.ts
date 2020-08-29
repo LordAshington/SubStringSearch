@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { getBaseUrl } from '../../main';
+import { empty } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -18,6 +19,8 @@ export class HomeComponent {
 
   //Here we will check the string, format it and send it to the backend for checking
   public subStringCheck(text1, text2) {
+    //remove the old messages
+    this.cleanOutput();
     //check the strings aren't empty
     if (this.stringValid(text1, text2)) {
       //clean up the strings
@@ -34,12 +37,25 @@ export class HomeComponent {
     }
   }
 
+  //Check for blank strings or strings of 3 or less full stop characters
+  // the full stop characters break the http request but it works with more
+  // than 3 or if its mixed with other characters
   private stringValid(maintext, subtext) {
-    if (maintext === "" || subtext === "" || maintext.length === 0 || subtext.length === 0) {
+    if (maintext === "" || subtext === "" ||
+      maintext.length === 0 || subtext.length === 0 ||
+      maintext === "." || subtext === "." ||
+      maintext === ".." || subtext === ".." ||
+      maintext === "..." || subtext === "...") {
       return false;
     } else {
       return true;
     }
+  }
+
+  private cleanOutput()
+  {
+    this.errorMessage = null;
+    this.result = null;
   }
 }
 
