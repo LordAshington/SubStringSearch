@@ -1,23 +1,28 @@
 import { Component, Inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 @Component({
   selector: 'app-home',
-  templateUrl: './home.component.html',
+  templateUrl: './home.component.html'
 })
 export class HomeComponent {
-  public subStringCheck() {
-    //Get values off inputs
-    var text = (<HTMLInputElement>document.getElementById("maintext")).value;
-    var subtext = (<HTMLInputElement>document.getElementById("subtext")).value;
-    //check they're not empty
-    //send to the backend
+  maintext: string;
+  subtext: string;
+  params = new HttpParams();
+
+  private subStringCheck(text1, text2) {
+    this.maintext = text1;
+    this.subtext = text2;
+    this.params.append('maintext', this.maintext);
+    this.params.append('subtext', this.subtext);
+    
   }
 
-  public isEmpty(str) {
-    str.trim();
-  return (!str || 0 === str.length);
-}
+  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
+    http.get<string>(baseUrl + 'string', { params : this.params}).subscribe(result => {
+      var compareResult = result;
+    }, error => console.error(error));
+  }
 }
 
 
