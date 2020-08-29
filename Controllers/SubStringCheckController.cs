@@ -44,7 +44,16 @@ namespace SubStringSearch.Controllers
                     }
                 }
                 //Turn the list of values into a string to print
-                string subtextStartstr = subtextMatches.ToString();
+                string subtextStartstr = "Substing starts at text index:";
+                for(int indexes = 0; indexes < subtextMatches.Count; indexes++)
+                {
+                    if (indexes > 0)
+                    {
+                        subtextStartstr = subtextStartstr + ", ";
+                    }
+                    
+                    subtextStartstr = subtextStartstr + subtextMatches[indexes].ToString();
+                }
                 return subtextStartstr;
             }
             else
