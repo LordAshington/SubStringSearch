@@ -21,7 +21,7 @@ export class HomeComponent {
     }, error => console.error(error));*/
   }
 
-  private subStringCheck(text1, text2) {
+  public subStringCheck(text1, text2) {
     //check the strings aren't empty
     console.log("clicked submit with text1="+text1+"text2="+text2);
     if (this.stringValid(text1, text2)) {
