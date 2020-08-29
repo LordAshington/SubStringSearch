@@ -41,5 +41,11 @@ namespace SubStringSearch
         {
             Assert.Equal("\"Substing starts at text index:0, 4, 8\"", _sut.substringchecker("the the the", "the"));
         }
+
+        [Fact]
+        public void WhiteSpaceIsTrimmed()
+        {
+            Assert.Equal("\"Substing starts at text index:0\"", _sut.substringchecker("   the   ", "the"));
+        }
     }
 }

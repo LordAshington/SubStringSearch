@@ -22,23 +22,31 @@ namespace SubStringSearch.Controllers
                     //check the subsequent characters if they match
                     if (text[i] == subtext[0]) 
                     {
-                        //chek the whole substring is present
+                        //check the whole substring is present
                         for(int subtextIndex = 0; subtextIndex < subtext.Length; subtextIndex++)
                         {
-                            if(i != text.Length - 1 && text[i+subtextIndex] == subtext[subtextIndex])
+                            //avoid an out of bounds error
+                            if (i + subtextIndex == text.Length)
                             {
-                                //check if its the last character in subtext
-                                if(subtextIndex == subtext.Length - 1)
-                                {
-                                    //Add this to the list of subtext starting values
-                                    subtextMatches.Add(i);
-                                    break;
-                                }
-                                continue;
+                                break;
                             }
                             else
                             {
-                                break;
+                                if (text[i + subtextIndex] == subtext[subtextIndex])
+                                {
+                                    //check if its the last character in subtext
+                                    if (subtextIndex == subtext.Length - 1)
+                                    {
+                                        //Add this to the list of subtext starting values
+                                        subtextMatches.Add(i);
+                                        break;
+                                    }
+                                    continue;
+                                }
+                                else
+                                {
+                                    break;
+                                }
                             }
                         }
                     }
