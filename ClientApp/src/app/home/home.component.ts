@@ -1,6 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { getBaseUrl } from '../../main';
 
 @Component({
   selector: 'app-home',
@@ -26,7 +25,7 @@ export class HomeComponent {
       this.maintext = text1.trim();
       this.subtext = text2.trim();
       //get the base url config
-      this.baseUrl = getBaseUrl();
+      this.baseUrl = document.getElementsByTagName('base')[0].href;
       //send the get request in uri encoded strings
       this.http.get<string>(this.baseUrl + 'substringchecker' + "/" + encodeURIComponent(this.maintext) + "/" +  encodeURIComponent(this.subtext)).subscribe(compResult => {
          this.result = compResult;
