@@ -1,25 +1,56 @@
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { TestBed, ComponentFixture, async } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 
 import { HomeComponent } from './home.component';
-import { HttpClient } from '@angular/common/http';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
-  let httpClient: HttpClient;
-  let httpTestingController: HttpTestingController;
+  let fixture: ComponentFixture<HomeComponent>;
+
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [HomeComponent],
+      imports: [HttpClientTestingModule],
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
-    //Configures testing app module
-    TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
-      providers: [HomeComponent]
-    })
+    fixture = TestBed.createComponent(HomeComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
 
-    //Instantaites 
-    httpClient = TestBed.inject(HttpClient);
-    httpTestingController = TestBed.inject(HttpTestingController);
-    component = TestBed.inject(HomeComponent);
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('should have header', () =>{
+    // we are accessing "h1"
+    const title = fixture.debugElement.query(By.css('h1')).nativeElement;
+    expect(title.innerHTML).toBe('Substring Search');
+  })
+
+  it('should have instruction text', () =>{
+    // we are accessing "h1"
+    const paragraph = fixture.debugElement.query(By.css('p')).nativeElement;
+    expect(paragraph.innerHTML).toBe('Please enter a string of text and a substring to search for');
+  })
+
+
+  it('should have Submit Button', () => {
+    const btn = fixture.debugElement.query(By.css('.btn-primary')).nativeElement;
+    expect(btn.innerHTML).toBe('Submit');
+  });
+
+  it('should have text input', () => {
+    const input = fixture.debugElement.nativeElement.querySelector('#text1');
+    expect(input).toBeTruthy;
+  });
+
+  it('should have subtext input', () => {
+    const input = fixture.debugElement.nativeElement.querySelector('#text2');
+    expect(input).toBeTruthy;
   });
 
   it('should return answer', () =>{

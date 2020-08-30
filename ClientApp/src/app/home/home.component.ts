@@ -19,11 +19,11 @@ export class HomeComponent {
   public subStringCheck(text1, text2) {
     //remove the old messages
     this.cleanOutput();
+    //clean up the strings
+    this.maintext = text1.trim();
+    this.subtext = text2.trim();
     //check the strings aren't empty
-    if (this.stringValid(text1, text2)) {
-      //clean up the strings
-      this.maintext = text1.trim();
-      this.subtext = text2.trim();
+    if (this.stringValid(this.maintext, this.subtext)) {
       //get the base url config
       this.baseUrl = document.getElementsByTagName('base')[0].href;
       //send the get request in uri encoded strings
